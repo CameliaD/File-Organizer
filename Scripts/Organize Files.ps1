@@ -1,14 +1,21 @@
-﻿<#
--> Running this script with admin rights
-#>
 <#
-If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
-{   
-    $arguments = "& '" + $myinvocation.mycommand.definition + "'"
-    Start-Process powershell -Verb runAs -ArgumentList $arguments
-    Break
-}
+.SYNOPSIS
+    Organize Files.ps1 is a PowerShell script that organizes files in a specified folder structure based on settings saved by the Configuration script.
+
+.DESCRIPTION
+    Organize Files.ps1 retrieves the configuration settings saved by the Configuration script and organizes the specified root folder and its files into folders by year and month. The script creates new folders if they do not already exist and moves files by creation date to the appropriate folders.
+
+.EXAMPLE
+    Run the script:
+    - By clicking the "Run" button in the UI interface.
+    - By right-clicking on "Organize Files.ps1" and selecting "Run with PowerShell". The extensions and paths must have been set up at least once with the UI for this to work.
+    - With Windows Scheduler. The extensions and paths must have been set up at least once with the UI for this to work.
+    
+.NOTES
+    Author: Camelia Bobaru
+    Date: 19.02.2023
 #>
+
 $scriptLocationOnThisPC = split-path -parent $MyInvocation.MyCommand.Definition
 $configFilesLocationOnThisPC = "$scriptLocationOnThisPC\Config files"
 
