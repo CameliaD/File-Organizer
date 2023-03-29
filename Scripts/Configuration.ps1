@@ -1,14 +1,20 @@
-﻿<#
--> Running this script with admin rights
-#>
 <#
-If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
-{   
-    $arguments = "& '" + $myinvocation.mycommand.definition + "'"
-    Start-Process powershell -Verb runAs -ArgumentList $arguments
-    Break
-}
+.SYNOPSIS
+    Configuration.ps1 is a PowerShell script that provides a user-friendly interface for configuring the Organize Files script.
+
+.DESCRIPTION
+    Configuration.ps1 allows users to configure the Organize Files script by selecting the root folder to organize and specifying how to group your files into folders by year or month. The script then saves these settings to text files, which are read by the Organize Files script to perform the folder and file organization.
+
+.EXAMPLE
+    Run the script:
+    - By double-clicking on "Start_File Organizer.bat".
+    - By right-clicking on "Configuration.ps1" and selecting "Run with PowerShell".
+    
+.NOTES
+    Author: Camelia Bobaru
+    Date: 19.02.2023
 #>
+
 $scriptLocationOnThisPC = split-path -parent $MyInvocation.MyCommand.Definition
 $configFilesLocationOnThisPC = "$scriptLocationOnThisPC\Config files"
 
